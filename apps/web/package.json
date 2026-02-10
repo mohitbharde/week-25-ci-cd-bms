@@ -19,10 +19,7 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-<<<<<<< HEAD
-=======
     "@repo/db": "workspace:*",
->>>>>>> cfcea22289c6a9dea23343fa6fdbdfe31a778091
     "@types/node": "^22.15.3",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
