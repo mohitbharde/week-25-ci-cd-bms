@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+
 import { prisma } from "@repo/db/prisma";
 
 const app = express();
@@ -14,6 +15,7 @@ app.post("/signup", async (req: Request, res: Response) => {
   const user = await prisma.user.create({
     data: {
       email: username,
+
       password: password,
     },
   });
