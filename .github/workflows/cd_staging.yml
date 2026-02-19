@@ -19,13 +19,18 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh ubuntu@3.26.103.174 << 'EOF'
+          ssh root@3.26.103.174 << 'EOF'
             set -e
             cd week-25-ci-cd-bms
             git pull origin main
             npm install -g pnpm
             pnpm install
+            pnpm run build
             pm2 restart fe-server
             pm2 restart http-server
             pm2 restart ws-server
           EOF
+
+      - name: Test SSH
+        run: |
+          ssh -vvv ubuntu@3.26.103.174 "whoami"
