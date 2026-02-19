@@ -22,10 +22,15 @@ jobs:
           ssh ubuntu@3.26.103.174 << 'EOF'
             set -e
             cd week-25-ci-cd-bms
-            git pull origin main
+
+            git fetch origin
+            git reset --hard origin/main
+            git clean -fd
+
             npm install -g pnpm
             pnpm install
             pnpm run build
+
             pm2 restart fe-server
             pm2 restart http-server
             pm2 restart ws-server
