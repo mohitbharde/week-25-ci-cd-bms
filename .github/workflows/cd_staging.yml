@@ -19,7 +19,7 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh root@3.26.103.174 << 'EOF'
+          ssh ubuntu@3.26.103.174 << 'EOF'
             set -e
             cd week-25-ci-cd-bms
             git pull origin main
