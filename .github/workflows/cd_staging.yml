@@ -7,7 +7,6 @@ on:
 jobs:
   redeploy_everything:
     runs-on: ubuntu-latest
-    name: Deploying everything to the staging cluster
 
     steps:
       - name: Setup SSH
@@ -21,6 +20,7 @@ jobs:
       - name: Deploy to server
         run: |
           ssh root@13.236.5.83 << 'EOF'
+            set -e
             cd week-25-ci-cd-bms
             git pull origin main
             npm install -g pnpm
