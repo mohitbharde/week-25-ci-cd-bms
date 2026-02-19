@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  redeploy_everything:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,9 +17,9 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           chmod 700 ~/.ssh
 
-      - name: Deploy to server
+      - name: Deploy to EC2
         run: |
-          ssh root@3.26.103.174 << 'EOF'
+          ssh ubuntu@3.26.103.174 << 'EOF'
             set -e
             cd week-25-ci-cd-bms
             git pull origin main
@@ -30,7 +30,3 @@ jobs:
             pm2 restart http-server
             pm2 restart ws-server
           EOF
-
-      - name: Test SSH
-        run: |
-          ssh -vvv ubuntu@3.26.103.174 "whoami"
