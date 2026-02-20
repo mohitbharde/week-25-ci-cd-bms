@@ -19,7 +19,7 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          ssh ubuntu@3.26.103.174 << 'EOF'
+          ssh ubuntu@13.239.246.244 << 'EOF'
             set -e
             cd week-25-ci-cd-bms
 
