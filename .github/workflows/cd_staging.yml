@@ -32,6 +32,7 @@ jobs:
             git reset --hard origin/main
             git clean -fd
 
+            npm -version
             npm install -g pnpm
             pnpm install
             pnpm run build
