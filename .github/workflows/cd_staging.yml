@@ -9,19 +9,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          echo "${{ secrets.KNOWN_HOSTS }}" > ~/.ssh/known_hosts
           chmod 600 ~/.ssh/id_rsa
-          chmod 700 ~/.ssh
+
+          # Add EC2 host to known_hosts automatically
+          ssh-keyscan -H 13.239.246.244 >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
 
       - name: Deploy to EC2
         run: |
-          ssh ubuntu@13.239.246.244 << 'EOF'
+          ssh -o StrictHostKeyChecking=yes ubuntu@13.239.246.244 << 'EOF'
             set -e
-            cd week-25-ci-cd-bms
+            cd ~/week-25-ci-cd-bms
 
             git fetch origin
             git reset --hard origin/main
