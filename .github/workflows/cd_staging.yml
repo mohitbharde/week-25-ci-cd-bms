@@ -24,7 +24,7 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=yes ubuntu@13.239.246.244 << 'EOF'
+          ssh -o StrictHostKeyChecking=yes ubuntu@15.135.138.49 << 'EOF'
             set -e
             cd ~/week-25-ci-cd-bms
 
