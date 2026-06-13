@@ -16,7 +16,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          chmod 700 ~/.ssh/id_rsa
 
           # Add EC2 host to known_hosts automatically
           ssh-keyscan -H 13.239.246.244 >> ~/.ssh/known_hosts
