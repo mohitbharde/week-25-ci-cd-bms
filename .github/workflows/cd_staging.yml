@@ -26,13 +26,19 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=yes ubuntu@15.135.138.49 << 'EOF'
             set -e
+
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+            node -v
+            npm -v
+
             cd ~/week-25-ci-cd-bms
 
             git fetch origin
             git reset --hard origin/main
             git clean -fd
 
-            npm -version
             npm install -g pnpm
             pnpm install
             pnpm run build
